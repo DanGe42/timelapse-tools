@@ -69,18 +69,19 @@ def try_mkdir(path)
   path.mkdir
 end
 
-def _main(image_filename, output_directory)
+def _main(image_path, output_directory)
+  output_filename = image_path.basename
+
   begin
-    image_file = File.open image_filename
+    image_file = File.open(image_path)
     try_mkdir(output_directory)
 
     image_exif = ExifDataStrict.new(Exif::Data.new(image_file))
     image_size = image_dimensions(image_exif)
-
     time_string = format_as_time(parse_exif_datetime(image_exif.date_time_original!))
 
     MiniMagick::Tool::Convert.new do |cli|
-      cli << image_filename
+      cli << image_path
 
       cli.virtual_pixel('mirror')
 
@@ -100,10 +101,10 @@ def _main(image_filename, output_directory)
         .type("TrueColor")
         .quality(95)
 
-      cli << output_directory + image_filename
+      cli << output_directory + output_filename
     end
   rescue
-    STDERR.puts "Unable to process #{image_filename}"
+    STDERR.puts "Unable to process #{image_path}"
     raise
   end
 end
@@ -113,5 +114,5 @@ if __FILE__ == $0
     abort "Usage: #{$0} image output-directory"
   end
 
-  _main(ARGV[0], Pathname.new(ARGV[1]))
+  _main(Pathname.new(ARGV[0]), Pathname.new(ARGV[1]))
 end
