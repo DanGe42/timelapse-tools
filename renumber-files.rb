@@ -24,8 +24,8 @@ try_mkdir(output_dir)
 files = Dir.glob(input_dir + "*.JPG")
 digits = files.size.to_s.size
 
-files.each_with_index do |file, index|
+files.map { |f| Pathname.new(f) }.each_with_index do |path, index|
   padded_index = "#{index}".rjust(digits, '0')
   destination = output_dir + "#{prefix}#{padded_index}.JPG"
-  File.symlink(file, destination)
+  File.symlink(path.relative_path_from(output_dir), destination)
 end
