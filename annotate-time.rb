@@ -85,6 +85,8 @@ def _main(image_path, output_directory)
 
       cli.virtual_pixel('mirror')
 
+      # These CLI flags were all taken from the LR Mogrify plugin. It's possible
+      # that these can be better tuned (and customizable).
       cli.font('/System/Library/Fonts/Monaco.dfont')
         .undercolor('rgba(0, 0, 0, 0.0)')
         .gravity('SouthWest')
