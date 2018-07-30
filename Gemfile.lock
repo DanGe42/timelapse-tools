@@ -1,0 +1,15 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    exif (2.2.0)
+    mini_magick (4.8.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  exif
+  mini_magick
+
+BUNDLED WITH
+   1.16.3
