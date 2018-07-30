@@ -109,10 +109,14 @@ def _main(image_path, output_directory)
   end
 end
 
-if __FILE__ == $0
-  unless ARGV.size == 2
+def main(args)
+  unless args.size == 2
     abort "Usage: #{$0} image output-directory"
   end
 
   _main(Pathname.new(ARGV[0]), Pathname.new(ARGV[1]))
+end
+
+if __FILE__ == $0
+  main(ARGV)
 end
