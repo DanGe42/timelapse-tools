@@ -93,11 +93,11 @@ def _main(image_path, output_directory)
         .gravity('SouthWest')
         .fill('rgba(92.86%, 94.04%, 94.01%, 1.00)')
         .density(72)
-        .pointsize(108)
+        .pointsize(144)
         .annotate(offset_string(
           origin: "0x0",
-          x_offset: image_size.width / 100 * 2,
-          y_offset: image_size.height / 100 * 3
+          x_offset: image_size.width / 100 * 4,
+          y_offset: image_size.height / 100 * 4
           ), time_string)
 
       cli.density(240)
