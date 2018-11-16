@@ -71,6 +71,7 @@ end
 
 def _main(image_path, output_directory)
   output_filename = image_path.basename
+  STDERR.puts output_filename
 
   begin
     image_file = File.open(image_path)
